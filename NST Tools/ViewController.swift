@@ -9,17 +9,47 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    let urlRequest = URLRequest(url: URL(string: "http://192.168.1.170/openDoor")!)
+    let urlConfig = URLSessionConfiguration.default
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        urlConfig.timeoutIntervalForRequest = 6
+        urlConfig.timeoutIntervalForResource = 6
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func openDoor(_ sender: UIButton) {
+        
+        let session = URLSession(configuration: urlConfig);
+        
+        session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+            let title = (data != nil) ? "Door is open" : "Unable to open door"
+            let message = (data != nil) ? "Have a nice day!" : "Check your current Wi-Fi network"
+            
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let _ = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.openURL(settingsUrl)
+                }
+            }
+            
+            let closeButton = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.cancel, handler: nil)
+            
+            // alert.addAction(settingsAction)
+            alert.addAction(closeButton)
+            self.present(alert, animated: true, completion: nil)
+        }).resume()
+    }
 
 }
 
