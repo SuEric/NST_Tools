@@ -70,12 +70,12 @@
 		8C1C60001DEF3BB700E9FC1A /* NST Tools */ = {
 			isa = PBXGroup;
 			children = (
-				8C1C60011DEF3BB700E9FC1A /* AppDelegate.swift */,
-				8C1C60031DEF3BB700E9FC1A /* ViewController.swift */,
-				8C1C60051DEF3BB700E9FC1A /* Main.storyboard */,
 				8C1C60081DEF3BB700E9FC1A /* Assets.xcassets */,
 				8C1C600A1DEF3BB700E9FC1A /* LaunchScreen.storyboard */,
 				8C1C600D1DEF3BB700E9FC1A /* Info.plist */,
+				8C1C60051DEF3BB700E9FC1A /* Main.storyboard */,
+				8C1C60011DEF3BB700E9FC1A /* AppDelegate.swift */,
+				8C1C60031DEF3BB700E9FC1A /* ViewController.swift */,
 			);
 			path = "NST Tools";
 			sourceTree = "<group>";
@@ -101,6 +101,7 @@
 				8C1C5FFC1DEF3BB700E9FC1A /* Resources */,
 				97F7B31565D1F655EF72F246 /* [CP] Embed Pods Frameworks */,
 				03CB3C57D9AB00EEE27AD2EB /* [CP] Copy Pods Resources */,
+				8C2B98831E8C183000AD31F9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -189,6 +190,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		8C2B98831E8C183000AD31F9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 799bb81a562099df4aebc0dc75dd9298b740c4e9 467f3725e2d884ecdad0fbbc99594ffd3d0c390241eb7f0cd51707b8a4320fd6";
 		};
 		97F7B31565D1F655EF72F246 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -339,6 +353,7 @@
 			baseConfigurationReference = 77CEABD3C483240B0DB2F634 /* Pods-NST Tools.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JAQ7PTE36G;
 				INFOPLIST_FILE = "NST Tools/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -354,6 +369,7 @@
 			baseConfigurationReference = 08DF871F2482D2B80E1BE83F /* Pods-NST Tools.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JAQ7PTE36G;
 				INFOPLIST_FILE = "NST Tools/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
