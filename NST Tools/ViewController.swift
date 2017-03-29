@@ -8,6 +8,9 @@
 
 import UIKit
 
+import Crashlytics
+
+
 class ViewController: UIViewController {
     
     let urlRequest = URLRequest(url: URL(string: "http://192.168.1.170/openDoor")!)
@@ -29,8 +32,13 @@ class ViewController: UIViewController {
         let session = URLSession(configuration: urlConfig);
         
         session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-            let title = (data != nil) ? "Door is open" : "Unable to open door"
-            let message = (data != nil) ? "Have a nice day!" : "Check your current Wi-Fi network"
+            
+            let doorOpened = (data != nil) ? true : false
+            
+            self.doorAction(successfully: doorOpened)
+            
+            let title = (doorOpened) ? "Door is open" : "Unable to open door"
+            let message = (doorOpened) ? "Have a nice day!" : "Check your current Wi-Fi network"
             
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
@@ -49,6 +57,10 @@ class ViewController: UIViewController {
             alert.addAction(closeButton)
             self.present(alert, animated: true, completion: nil)
         }).resume()
+    }
+
+    func doorAction(successfully: Bool) {
+        Answers.logCustomEvent(withName: "DoorOpen", customAttributes: ["success": successfully])
     }
 
 }
