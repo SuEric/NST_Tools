@@ -13,7 +13,7 @@ import Crashlytics
 
 class ViewController: UIViewController {
     
-    let urlRequest = URLRequest(url: URL(string: "http://192.168.1.170/openDoor")!)
+    let urlRequest = URLRequest(url: URL(string: "http://192.168.100.253/openDoor")!)
     let urlConfig = URLSessionConfiguration.default
     
     override func viewDidLoad() {
